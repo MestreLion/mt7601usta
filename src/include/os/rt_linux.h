@@ -287,12 +287,15 @@ typedef struct _OS_FS_INFO_
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3,12,0) || defined (SYNOLOGY)
 	uid_t				fsuid;
 	gid_t				fsgid;
-#elif LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,29)
-	int				fsuid;
-	int				fsgid;
-#else
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3,5,0)
 	kuid_t				fsuid;
 	kgid_t				fsgid;
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3,0,0)
+	uid_t				fsuid;
+	gid_t				fsgid;
+#else
+	int				fsuid;
+	int				fsgid;
 #endif
 	mm_segment_t	fs;
 } OS_FS_INFO;
